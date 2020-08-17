@@ -42,6 +42,9 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("CrossAxisAlignment.stretch", RowCrossAxisAlignment(CrossAxisAlignment.stretch)),
     MapEntry("MainAxisSize.max", RowMainAxisSize(MainAxisSize.max)),
     MapEntry("MainAxisSize.min", RowMainAxisSize(MainAxisSize.min)),
+    MapEntry("IntrinsicWidthBefore", IntrinsicWidthBefore()),
+    MapEntry("IntrinsicWidthAfter", IntrinsicWidthAfter()),
+    MapEntry("Stack", MyStack()),
   ];
 
   @override
@@ -54,7 +57,7 @@ class NewWidgetState extends State<NewWidget> {
             title: Text(layouts[layoutsIndex].key),
           ),
           body: Container(
-            color: Colors.yellow,
+//            color: Colors.yellow,
             child: layouts[layoutsIndex].value,
           ),
         ),

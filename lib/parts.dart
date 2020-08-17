@@ -75,3 +75,82 @@ class MyBaseline extends StatelessWidget {
     );
   }
 }
+
+class IntrinsicWidthBefore extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {},
+            child: Text('Short'),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            child: Text('A bit Longer'),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            child: Text('The Longest text button'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class IntrinsicWidthAfter extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: IntrinsicWidth(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {},
+              child: Text('Short'),
+            ),
+            RaisedButton(
+              onPressed: () {},
+              child: Text('A bit Longer'),
+            ),
+            RaisedButton(
+              onPressed: () {},
+              child: Text('The Longest text button'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyStack extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(),
+        Banner(
+          message: 'topstart',
+          location: BannerLocation.topStart,
+        ),
+        Banner(
+          message: 'topend',
+          location: BannerLocation.topEnd,
+        ),
+        Banner(
+          message: 'bottomStart',
+          location: BannerLocation.bottomStart,
+        ),
+        Banner(
+          message: 'bottomend',
+          location: BannerLocation.bottomEnd,
+        ),
+      ],
+    );
+  }
+}
