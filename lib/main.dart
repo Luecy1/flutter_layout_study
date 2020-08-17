@@ -45,6 +45,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("IntrinsicWidthBefore", IntrinsicWidthBefore()),
     MapEntry("IntrinsicWidthAfter", IntrinsicWidthAfter()),
     MapEntry("Stack", MyStack()),
+    MapEntry("MyPositioned", MyPositioned()),
   ];
 
   @override
