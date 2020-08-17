@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/parts.dart';
 
+import 'constrained_box.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -48,6 +50,8 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyPositioned", MyPositioned()),
     MapEntry("MyExpanded", MyExpanded()),
     MapEntry("MyConstrainedBox", MyConstrainedBox()),
+    MapEntry("MyConstrainedBox2", MyConstrainedBox2()),
+    MapEntry("MyConstrainedBoxExpand", MyConstrainedBoxExpand()),
   ];
 
   @override

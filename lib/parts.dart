@@ -208,12 +208,3 @@ class MyExpanded extends StatelessWidget {
   }
 }
 
-class MyConstrainedBox extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: const Text('hello'),
-      color: Colors.yellow,
-    );
-  }
-}
