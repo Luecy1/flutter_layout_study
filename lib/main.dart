@@ -35,6 +35,8 @@ class NewWidgetState extends State<NewWidget> {
         "MainAxisAlignment.spaceBetween", RowMainAxisAlignment(MainAxisAlignment.spaceBetween)),
     MapEntry("MainAxisAlignment.spaceAround", RowMainAxisAlignment(MainAxisAlignment.spaceAround)),
     MapEntry("MainAxisAlignment.spaceEvenly", RowMainAxisAlignment(MainAxisAlignment.spaceEvenly)),
+    MapEntry("baseline", MyBaseline()),
+    MapEntry("CrossAxisAlignment.start", RowCrossAxisAlignment(CrossAxisAlignment.start)),
   ];
 
   @override
@@ -48,7 +50,7 @@ class NewWidgetState extends State<NewWidget> {
         child: layouts[layoutsIndex].value,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.navigate_next),
         onPressed: () {
           int newLayoutIndex = layoutsIndex + 1;
           newLayoutIndex %= layouts.length;
