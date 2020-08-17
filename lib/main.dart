@@ -46,6 +46,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("IntrinsicWidthAfter", IntrinsicWidthAfter()),
     MapEntry("Stack", MyStack()),
     MapEntry("MyPositioned", MyPositioned()),
+    MapEntry("MyExpanded", MyExpanded()),
   ];
 
   @override
@@ -55,10 +56,10 @@ class NewWidgetState extends State<NewWidget> {
       children: [
         Scaffold(
           appBar: AppBar(
-            title: Text(layouts[layoutsIndex].key),
+            title: Text(layouts[layoutsIndex].key + layoutsIndex.toString()),
           ),
           body: Container(
-//            color: Colors.yellow,
+            color: (0 <= layoutsIndex && layoutsIndex <= 11) ? Colors.yellow : Colors.white,
             child: layouts[layoutsIndex].value,
           ),
         ),
