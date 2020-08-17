@@ -41,24 +41,47 @@ class NewWidgetState extends State<NewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(layouts[layoutsIndex].key),
-      ),
-      body: Container(
-        color: Colors.yellow,
-        child: layouts[layoutsIndex].value,
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.navigate_next),
-        onPressed: () {
-          int newLayoutIndex = layoutsIndex + 1;
-          newLayoutIndex %= layouts.length;
-          setState(() {
-            layoutsIndex = newLayoutIndex;
-          });
-        },
-      ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            title: Text(layouts[layoutsIndex].key),
+          ),
+          body: Container(
+            color: Colors.yellow,
+            child: layouts[layoutsIndex].value,
+          ),
+        ),
+        Positioned(
+          bottom: 10,
+          left: 10,
+          child: FloatingActionButton(
+            child: Icon(Icons.navigate_before),
+            onPressed: () {
+              int newLayoutIndex = layoutsIndex - 1;
+              newLayoutIndex %= layouts.length;
+              setState(() {
+                layoutsIndex = newLayoutIndex;
+              });
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 10,
+          child: FloatingActionButton(
+            child: Icon(Icons.navigate_next),
+            onPressed: () {
+              int newLayoutIndex = layoutsIndex + 1;
+              newLayoutIndex %= layouts.length;
+              setState(() {
+                layoutsIndex = newLayoutIndex;
+              });
+            },
+          ),
+        ),
+      ],
     );
   }
 }
