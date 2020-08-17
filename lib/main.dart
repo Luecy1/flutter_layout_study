@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_layout_study/parts.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,40 +15,48 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("layout study"),
-        ),
-        body: _MyPage(),
-      ),
+      home: NewWidget(),
     );
   }
 }
 
-class _MyPage extends StatelessWidget {
+class NewWidget extends StatefulWidget {
+  @override
+  NewWidgetState createState() => NewWidgetState();
+}
+
+class NewWidgetState extends State<NewWidget> {
+  int layoutsIndex = 0;
+
+  final layouts = [
+    MapEntry("MainAxisAlignment.start", RowMainAxisAlignment(MainAxisAlignment.start)),
+    MapEntry("MainAxisAlignment.end", RowMainAxisAlignment(MainAxisAlignment.end)),
+    MapEntry(
+        "MainAxisAlignment.spaceBetween", RowMainAxisAlignment(MainAxisAlignment.spaceBetween)),
+    MapEntry("MainAxisAlignment.spaceAround", RowMainAxisAlignment(MainAxisAlignment.spaceAround)),
+    MapEntry("MainAxisAlignment.spaceEvenly", RowMainAxisAlignment(MainAxisAlignment.spaceEvenly)),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        RaisedButton(
-          onPressed: () {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Click!'),
-              ),
-            );
-          },
-          child: Text('tap'),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Icon(Icons.star, size: 50),
-            Icon(Icons.star, size: 50),
-            Icon(Icons.star, size: 50),
-          ],
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(layouts[layoutsIndex].key),
+      ),
+      body: Container(
+        color: Colors.yellow,
+        child: layouts[layoutsIndex].value,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          int newLayoutIndex = layoutsIndex + 1;
+          newLayoutIndex %= layouts.length;
+          setState(() {
+            layoutsIndex = newLayoutIndex;
+          });
+        },
+      ),
     );
   }
 }
