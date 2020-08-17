@@ -1,3 +1,5 @@
+// respect https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e
+
 import 'package:flutter/material.dart';
 
 const children = [
@@ -36,6 +38,20 @@ class RowCrossAxisAlignment extends StatelessWidget {
         Icon(Icons.star, size: 200),
         Icon(Icons.star, size: 50),
       ],
+    );
+  }
+}
+
+class RowMainAxisSize extends StatelessWidget {
+  final MainAxisSize _mainAxisSize;
+
+  RowMainAxisSize(this._mainAxisSize);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: _mainAxisSize,
+      children: children,
     );
   }
 }

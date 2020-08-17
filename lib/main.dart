@@ -37,6 +37,11 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MainAxisAlignment.spaceEvenly", RowMainAxisAlignment(MainAxisAlignment.spaceEvenly)),
     MapEntry("baseline", MyBaseline()),
     MapEntry("CrossAxisAlignment.start", RowCrossAxisAlignment(CrossAxisAlignment.start)),
+    MapEntry("CrossAxisAlignment.center", RowCrossAxisAlignment(CrossAxisAlignment.center)),
+    MapEntry("CrossAxisAlignment.end", RowCrossAxisAlignment(CrossAxisAlignment.end)),
+    MapEntry("CrossAxisAlignment.stretch", RowCrossAxisAlignment(CrossAxisAlignment.stretch)),
+    MapEntry("MainAxisSize.max", RowMainAxisSize(MainAxisSize.max)),
+    MapEntry("MainAxisSize.min", RowMainAxisSize(MainAxisSize.min)),
   ];
 
   @override
