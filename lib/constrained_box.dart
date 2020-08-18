@@ -35,3 +35,35 @@ class MyConstrainedBoxExpand extends StatelessWidget {
     );
   }
 }
+
+class MyAlign extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        RaisedButton(
+          onPressed: () {},
+          child: const Text('Button'),
+        )
+      ],
+    );
+  }
+}
+
+class MyAlign2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(
+          child: RaisedButton(
+            onPressed: () {},
+            child: const Text('Button'),
+          ),
+        )
+      ],
+    );
+  }
+}

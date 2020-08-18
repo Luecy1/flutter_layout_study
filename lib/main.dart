@@ -52,6 +52,8 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyConstrainedBox", MyConstrainedBox()),
     MapEntry("MyConstrainedBox2", MyConstrainedBox2()),
     MapEntry("MyConstrainedBoxExpand", MyConstrainedBoxExpand()),
+    MapEntry("MyAlign", MyAlign()),
+    MapEntry("MyAlign2", MyAlign2()),
   ];
 
   @override
@@ -61,7 +63,7 @@ class NewWidgetState extends State<NewWidget> {
       children: [
         Scaffold(
           appBar: AppBar(
-            title: Text(layouts[layoutsIndex].key + layoutsIndex.toString()),
+            title: Text('${layouts[layoutsIndex].key} ${layoutsIndex.toString()}'),
           ),
           body: Container(
             color: (0 <= layoutsIndex && layoutsIndex <= 11) ? Colors.yellow : Colors.white,
