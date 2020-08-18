@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class MyConstrainedBox extends StatelessWidget {
@@ -111,6 +113,22 @@ class MyContainer4 extends StatelessWidget {
       decoration: BoxDecoration(color: Colors.yellowAccent),
       foregroundDecoration: BoxDecoration(color: Colors.red.withOpacity(0.5)),
       child: Text('Hi'),
+    );
+  }
+}
+
+class MyTransform extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      width: 300,
+      transform: Matrix4.rotationZ(pi / 4),
+      decoration: BoxDecoration(color: Colors.yellowAccent),
+      child: Text(
+        "Hi",
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }
