@@ -60,6 +60,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyContainer4", MyContainer4()),
     MapEntry("MyTransform", MyTransform()),
     MapEntry("MyBoxDecoration", MyBoxDecoration()),
+    MapEntry("MyBorder", MyBorder()),
   ];
 
   @override
