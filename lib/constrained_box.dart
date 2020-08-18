@@ -77,3 +77,40 @@ class MyContainer extends StatelessWidget {
     );
   }
 }
+
+class MyContainer2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: Colors.yellowAccent,
+      child: Text('Hi'),
+    );
+  }
+}
+
+class MyContainer3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(color: Colors.yellowAccent),
+      child: Text('Hi'),
+    );
+  }
+}
+
+class MyContainer4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(color: Colors.yellowAccent),
+      foregroundDecoration: BoxDecoration(color: Colors.red.withOpacity(0.5)),
+      child: Text('Hi'),
+    );
+  }
+}
