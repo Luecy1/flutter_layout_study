@@ -67,3 +67,13 @@ class MyAlign2 extends StatelessWidget {
     );
   }
 }
+
+class MyContainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellowAccent,
+      child: Text('Hi'),
+    );
+  }
+}

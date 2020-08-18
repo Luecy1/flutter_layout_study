@@ -54,6 +54,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyConstrainedBoxExpand", MyConstrainedBoxExpand()),
     MapEntry("MyAlign", MyAlign()),
     MapEntry("MyAlign2", MyAlign2()),
+    MapEntry("MyContainer", MyContainer()),
   ];
 
   @override
