@@ -199,3 +199,23 @@ class MyBoxShape extends StatelessWidget {
     ));
   }
 }
+
+class MyBoxShadow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+          color: Colors.yellow,
+          boxShadow: const [
+            BoxShadow(blurRadius: 10),
+            BoxShadow(blurRadius: 20),
+            BoxShadow(blurRadius: 30),
+          ],
+        ),
+      ),
+    );
+  }
+}
