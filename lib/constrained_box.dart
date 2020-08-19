@@ -184,3 +184,18 @@ class MyBorderRadius extends StatelessWidget {
     );
   }
 }
+
+class MyBoxShape extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Container(
+      height: 200,
+      width: 200,
+      decoration: BoxDecoration(
+        color: Colors.yellow,
+        shape: BoxShape.circle,
+      ),
+    ));
+  }
+}
