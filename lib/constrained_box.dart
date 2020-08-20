@@ -219,3 +219,22 @@ class MyBoxShadow extends StatelessWidget {
     );
   }
 }
+
+class MyGradient extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          colors: const [
+            Colors.red,
+            Colors.blue,
+          ],
+        )),
+      ),
+    );
+  }
+}
