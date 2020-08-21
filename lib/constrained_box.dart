@@ -238,3 +238,23 @@ class MyGradient extends StatelessWidget {
     );
   }
 }
+
+class MyRadialGradient extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 200,
+        width: 200,
+        decoration: BoxDecoration(
+            gradient: RadialGradient(
+          colors: const [
+            Colors.yellow,
+            Colors.blue,
+          ],
+          stops: const [0.4, 1.0],
+        )),
+      ),
+    );
+  }
+}

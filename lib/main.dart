@@ -65,6 +65,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyBoxShape", MyBoxShape()),
     MapEntry("MyBoxShadow", MyBoxShadow()),
     MapEntry("MyGradient", MyGradient()),
+    MapEntry("MyRadialGradient", MyRadialGradient()),
   ];
 
   @override
