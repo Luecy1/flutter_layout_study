@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/parts.dart';
 
-import 'constrained_box.dart';
 
 void main() {
   runApp(MyApp());
