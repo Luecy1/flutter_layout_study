@@ -67,6 +67,7 @@ class NewWidgetState extends State<NewWidget> {
     MapEntry("MyGradient", MyGradient()),
     MapEntry("MyRadialGradient", MyRadialGradient()),
     MapEntry("MySweepGradient", MySweepGradient()),
+    MapEntry("MyBackgroundBlendMode", MyBackgroundBlendMode()),
   ];
 
   @override

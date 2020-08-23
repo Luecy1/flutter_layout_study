@@ -237,3 +237,27 @@ class MySweepGradient extends StatelessWidget {
     );
   }
 }
+
+class MyBackgroundBlendMode extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        foregroundDecoration: BoxDecoration(
+          backgroundBlendMode: BlendMode.exclusion,
+          gradient: LinearGradient(
+            colors: const [
+              Colors.red,
+              Colors.blue,
+            ],
+          ),
+        ),
+        child: Image.network(
+          'https://flutter.io/images/catalog-widget-placeholder.png',
+        ),
+      ),
+    );
+  }
+}
