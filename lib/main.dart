@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/parts.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: NewWidget(),
+      home: MyPage(),
     );
   }
 }
@@ -26,48 +25,47 @@ class NewWidget extends StatefulWidget {
   NewWidgetState createState() => NewWidgetState();
 }
 
+final layouts = [
+  MapEntry("MainAxisAlignment.start", RowMainAxisAlignment(MainAxisAlignment.start)),
+  MapEntry("MainAxisAlignment.end", RowMainAxisAlignment(MainAxisAlignment.end)),
+  MapEntry("MainAxisAlignment.spaceBetween", RowMainAxisAlignment(MainAxisAlignment.spaceBetween)),
+  MapEntry("MainAxisAlignment.spaceAround", RowMainAxisAlignment(MainAxisAlignment.spaceAround)),
+  MapEntry("MainAxisAlignment.spaceEvenly", RowMainAxisAlignment(MainAxisAlignment.spaceEvenly)),
+  MapEntry("baseline", MyBaseline()),
+  MapEntry("CrossAxisAlignment.start", RowCrossAxisAlignment(CrossAxisAlignment.start)),
+  MapEntry("CrossAxisAlignment.center", RowCrossAxisAlignment(CrossAxisAlignment.center)),
+  MapEntry("CrossAxisAlignment.end", RowCrossAxisAlignment(CrossAxisAlignment.end)),
+  MapEntry("CrossAxisAlignment.stretch", RowCrossAxisAlignment(CrossAxisAlignment.stretch)),
+  MapEntry("MainAxisSize.max", RowMainAxisSize(MainAxisSize.max)),
+  MapEntry("MainAxisSize.min", RowMainAxisSize(MainAxisSize.min)),
+  MapEntry("IntrinsicWidthBefore", IntrinsicWidthBefore()),
+  MapEntry("IntrinsicWidthAfter", IntrinsicWidthAfter()),
+  MapEntry("Stack", MyStack()),
+  MapEntry("MyPositioned", MyPositioned()),
+  MapEntry("MyExpanded", MyExpanded()),
+  MapEntry("MyConstrainedBox", MyConstrainedBox()),
+  MapEntry("MyConstrainedBox2", MyConstrainedBox2()),
+  MapEntry("MyConstrainedBoxExpand", MyConstrainedBoxExpand()),
+  MapEntry("MyAlign", MyAlign()),
+  MapEntry("MyAlign2", MyAlign2()),
+  MapEntry("MyContainer", MyContainer()),
+  MapEntry("MyContainer2", MyContainer2()),
+  MapEntry("MyContainer3", MyContainer3()),
+  MapEntry("MyContainer4", MyContainer4()),
+  MapEntry("MyTransform", MyTransform()),
+  MapEntry("MyBoxDecoration", MyBoxDecoration()),
+  MapEntry("MyBorder", MyBorder()),
+  MapEntry("MyBorderRadius", MyBorderRadius()),
+  MapEntry("MyBoxShape", MyBoxShape()),
+  MapEntry("MyBoxShadow", MyBoxShadow()),
+  MapEntry("MyGradient", MyGradient()),
+  MapEntry("MyRadialGradient", MyRadialGradient()),
+  MapEntry("MySweepGradient", MySweepGradient()),
+  MapEntry("MyBackgroundBlendMode", MyBackgroundBlendMode()),
+];
+
 class NewWidgetState extends State<NewWidget> {
   int layoutsIndex = 0;
-
-  final layouts = [
-    MapEntry("MainAxisAlignment.start", RowMainAxisAlignment(MainAxisAlignment.start)),
-    MapEntry("MainAxisAlignment.end", RowMainAxisAlignment(MainAxisAlignment.end)),
-    MapEntry(
-        "MainAxisAlignment.spaceBetween", RowMainAxisAlignment(MainAxisAlignment.spaceBetween)),
-    MapEntry("MainAxisAlignment.spaceAround", RowMainAxisAlignment(MainAxisAlignment.spaceAround)),
-    MapEntry("MainAxisAlignment.spaceEvenly", RowMainAxisAlignment(MainAxisAlignment.spaceEvenly)),
-    MapEntry("baseline", MyBaseline()),
-    MapEntry("CrossAxisAlignment.start", RowCrossAxisAlignment(CrossAxisAlignment.start)),
-    MapEntry("CrossAxisAlignment.center", RowCrossAxisAlignment(CrossAxisAlignment.center)),
-    MapEntry("CrossAxisAlignment.end", RowCrossAxisAlignment(CrossAxisAlignment.end)),
-    MapEntry("CrossAxisAlignment.stretch", RowCrossAxisAlignment(CrossAxisAlignment.stretch)),
-    MapEntry("MainAxisSize.max", RowMainAxisSize(MainAxisSize.max)),
-    MapEntry("MainAxisSize.min", RowMainAxisSize(MainAxisSize.min)),
-    MapEntry("IntrinsicWidthBefore", IntrinsicWidthBefore()),
-    MapEntry("IntrinsicWidthAfter", IntrinsicWidthAfter()),
-    MapEntry("Stack", MyStack()),
-    MapEntry("MyPositioned", MyPositioned()),
-    MapEntry("MyExpanded", MyExpanded()),
-    MapEntry("MyConstrainedBox", MyConstrainedBox()),
-    MapEntry("MyConstrainedBox2", MyConstrainedBox2()),
-    MapEntry("MyConstrainedBoxExpand", MyConstrainedBoxExpand()),
-    MapEntry("MyAlign", MyAlign()),
-    MapEntry("MyAlign2", MyAlign2()),
-    MapEntry("MyContainer", MyContainer()),
-    MapEntry("MyContainer2", MyContainer2()),
-    MapEntry("MyContainer3", MyContainer3()),
-    MapEntry("MyContainer4", MyContainer4()),
-    MapEntry("MyTransform", MyTransform()),
-    MapEntry("MyBoxDecoration", MyBoxDecoration()),
-    MapEntry("MyBorder", MyBorder()),
-    MapEntry("MyBorderRadius", MyBorderRadius()),
-    MapEntry("MyBoxShape", MyBoxShape()),
-    MapEntry("MyBoxShadow", MyBoxShadow()),
-    MapEntry("MyGradient", MyGradient()),
-    MapEntry("MyRadialGradient", MyRadialGradient()),
-    MapEntry("MySweepGradient", MySweepGradient()),
-    MapEntry("MyBackgroundBlendMode", MyBackgroundBlendMode()),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +110,48 @@ class NewWidgetState extends State<NewWidget> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('layout'),
+      ),
+      body: ListView.builder(
+        itemCount: layouts.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(layouts[index].key),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SkeletonPage(layouts[index]);
+              }));
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SkeletonPage extends StatelessWidget {
+  final MapEntry<String, Widget> innerWidget;
+
+  SkeletonPage(this.innerWidget);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${innerWidget.key}'),
+      ),
+      body: Container(
+        child: innerWidget.value,
+      ),
     );
   }
 }
