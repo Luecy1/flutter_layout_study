@@ -62,6 +62,7 @@ final layouts = [
   MapEntry("MyRadialGradient", MyRadialGradient()),
   MapEntry("MySweepGradient", MySweepGradient()),
   MapEntry("MyBackgroundBlendMode", MyBackgroundBlendMode()),
+  MapEntry("MyMaterial", MyMaterial()),
 ];
 
 class NewWidgetState extends State<NewWidget> {
