@@ -40,3 +40,11 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/apk/release/app-release.apk
+
+    - name: Distribute App
+      run: |
+       curl \
+        -H "Authorization: token ${{secrets.DEPLOYGATE_API_KEY}}" \
+        -F "file=@build/app/outputs/apk/release/app-release.apk" \
+        -F "message=`git log -1 --pretty='%s' $GITHUB_SHA`" \
+        "https://deploygate.com/api/users/${{secrets.DEPLOYGATE_USER}}/apps"
