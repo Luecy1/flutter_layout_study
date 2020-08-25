@@ -539,3 +539,27 @@ class MyMaterial extends StatelessWidget {
     );
   }
 }
+
+class MySliverFillRemaining extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              FlutterLogo(size: 200),
+              Text(
+                'his is some longest text that should be centered'
+                'together with the logo',
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
