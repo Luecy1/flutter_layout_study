@@ -64,6 +64,7 @@ final layouts = [
   MapEntry("MyBackgroundBlendMode", MyBackgroundBlendMode()),
   MapEntry("MyMaterial", MyMaterial()),
   MapEntry("MySliverFillRemaining", MySliverFillRemaining()),
+  MapEntry("MySliverFillRemaining2", MySliverFillRemaining2()),
 ];
 
 class NewWidgetState extends State<NewWidget> {
