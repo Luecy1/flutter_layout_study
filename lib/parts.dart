@@ -598,3 +598,29 @@ class MySliverFillRemaining2 extends StatelessWidget {
     );
   }
 }
+
+class MySizedBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Card(
+        child: Text('Hello World!'),
+        color: Colors.yellowAccent,
+      ),
+    );
+  }
+}
+
+class MySizedBox2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Icon(Icons.star, size: 50),
+        const SizedBox(height: 100),
+        Icon(Icons.star, size: 50),
+        Icon(Icons.star, size: 50),
+      ],
+    );
+  }
+}

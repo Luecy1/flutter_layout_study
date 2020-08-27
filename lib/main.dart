@@ -65,6 +65,8 @@ final layouts = [
   MapEntry("MyMaterial", MyMaterial()),
   MapEntry("MySliverFillRemaining", MySliverFillRemaining()),
   MapEntry("MySliverFillRemaining2", MySliverFillRemaining2()),
+  MapEntry("MySizedBox", MySizedBox()),
+  MapEntry("MySizedBox2", MySizedBox2()),
 ];
 
 class NewWidgetState extends State<NewWidget> {
