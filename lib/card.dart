@@ -85,7 +85,6 @@ class _Post extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Card(
         elevation: 1,
-        shadowColor: Colors.redAccent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
