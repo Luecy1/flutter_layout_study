@@ -4,7 +4,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(title: Text('hoge')),
-      body: MyCard(),
+      body: PostList(),
     ),
   ));
 }
