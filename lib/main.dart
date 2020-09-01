@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/parts.dart';
 
-import 'card.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -69,7 +67,6 @@ final layouts = [
   MapEntry("MySliverFillRemaining2", MySliverFillRemaining2()),
   MapEntry("MySizedBox", MySizedBox()),
   MapEntry("MySizedBox2", MySizedBox2()),
-  MapEntry("MyCard", MyCard()),
 ];
 
 class NewWidgetState extends State<NewWidget> {
