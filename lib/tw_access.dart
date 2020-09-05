@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:twitter_api/twitter_api.dart';
 
 Future<void> main() async {
-  print('hello');
 
   final twitter = twitterApi(
     consumerKey: APIKey,
