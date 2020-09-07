@@ -1030,9 +1030,9 @@ class _PageState extends State<_Page> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.search),
-                border: OutlineInputBorder(),
+              decoration: const InputDecoration(
+                icon: const Icon(Icons.search),
+                border: const OutlineInputBorder(),
                 labelText: 'Search',
               ),
               textInputAction: TextInputAction.done,
@@ -1044,14 +1044,12 @@ class _PageState extends State<_Page> {
           Expanded(
             child: StreamBuilder<String>(
                 stream: _controller.stream,
-                builder: (context, snapshot) {
-                  return GridView.count(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 4.0,
-                    children: filterList(iconList, snapshot),
-                  );
-                }),
+                builder: (context, snapshot) => GridView.count(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 4.0,
+                      mainAxisSpacing: 4.0,
+                      children: filterList(iconList, snapshot),
+                    )),
           ),
         ],
       ),
