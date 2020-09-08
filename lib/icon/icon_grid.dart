@@ -1048,7 +1048,7 @@ class _PageState extends State<_Page> {
                       crossAxisCount: 3,
                       crossAxisSpacing: 4.0,
                       mainAxisSpacing: 4.0,
-                      children: filterList(iconList, snapshot),
+                      children: filterAndMapList(iconList, snapshot),
                     )),
           ),
         ],
@@ -1056,9 +1056,9 @@ class _PageState extends State<_Page> {
     );
   }
 
-  List<Widget> filterList(
-      List<_IconEntry> iconList, AsyncSnapshot<String> snapshot) {
-    if (!snapshot.hasData) {
+  List<Widget> filterAndMapList(List<_IconEntry> iconList,
+      AsyncSnapshot<String> snapshot) {
+    if (!snapshot.hasData || snapshot.data.isEmpty) {
       return iconList.map((e) => _iconEntry(e.iconData, e.key)).toList();
     }
 
