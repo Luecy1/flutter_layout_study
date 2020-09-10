@@ -22,11 +22,21 @@ class _Page extends StatelessWidget {
         title: Text('Alert'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Alert1'),
-          onPressed: () {
-            onPressAlert1(context);
-          },
+        child: Column(
+          children: [
+            RaisedButton(
+              child: Text('Alert1'),
+              onPressed: () {
+                onPressAlert1(context);
+              },
+            ),
+            RaisedButton(
+              child: Text('Date Dialog'),
+              onPressed: () {
+                onPressDatePicker(context);
+              },
+            )
+          ],
         ),
       ),
     );
@@ -53,5 +63,20 @@ class _Page extends StatelessWidget {
 
     final result = await dialog;
     print(result);
+  }
+
+  void onPressDatePicker(BuildContext context) async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1);
+    final lastDate = DateTime(now.year + 1);
+
+    final date = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    print(date);
   }
 }
