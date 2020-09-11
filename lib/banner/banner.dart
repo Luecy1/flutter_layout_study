@@ -12,7 +12,6 @@ class _MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'banner',
       home: _MyPage(),
-      theme: _buildShrineTheme(),
     );
   }
 }
@@ -38,20 +37,22 @@ class _MyPage extends StatelessWidget {
               ),
             ],
           ),
-          MaterialBanner(
-            backgroundColor: shrineBackgroundWhite,
-            content: const Text('Error message text'),
-            leading: CircleAvatar(child: Icon(Icons.delete)),
-            actions: [
-              FlatButton(
-                child: const Text('ACTION 1'),
-                onPressed: () {},
-              ),
-              FlatButton(
-                child: const Text('ACTION 2'),
-                onPressed: () {},
-              ),
-            ],
+          Theme(
+            data: _buildShrineTheme(),
+            child: MaterialBanner(
+              content: const Text('Error message text'),
+              leading: CircleAvatar(child: Icon(Icons.delete)),
+              actions: [
+                FlatButton(
+                  child: const Text('ACTION 1'),
+                  onPressed: () {},
+                ),
+                FlatButton(
+                  child: const Text('ACTION 2'),
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         ],
       ),
