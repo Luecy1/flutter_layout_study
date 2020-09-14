@@ -25,17 +25,52 @@ class __PageState extends State<_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('color'),
+      ),
       body: Center(
-        child: Slider(
-          value: _currentSliderValue,
-          min: 0.0,
-          max: 100.0,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              color: Colors.yellow,
+              width: 200.0,
+              height: 200.0,
+            ),
+            Slider(
+              value: _currentSliderValue,
+              min: 0.0,
+              max: 100.0,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+            Slider(
+              value: _currentSliderValue,
+              min: 0.0,
+              max: 100.0,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+            Slider(
+              value: _currentSliderValue,
+              min: 0.0,
+              max: 100.0,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+          ],
         ),
       ),
     );
