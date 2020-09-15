@@ -38,6 +38,8 @@ class __PageState extends State<_Page> {
               height: 200.0,
             ),
             Slider(
+              activeColor: Colors.red,
+              inactiveColor: Colors.red.withOpacity(0.38),
               value: _currentSliderValue,
               min: 0.0,
               max: 100.0,
@@ -49,6 +51,8 @@ class __PageState extends State<_Page> {
               },
             ),
             Slider(
+              activeColor: Colors.green,
+              inactiveColor: Colors.green.withOpacity(0.38),
               value: _currentSliderValue,
               min: 0.0,
               max: 100.0,
@@ -60,6 +64,8 @@ class __PageState extends State<_Page> {
               },
             ),
             Slider(
+              activeColor: Colors.blue,
+              inactiveColor: Colors.blue.withOpacity(0.38),
               value: _currentSliderValue,
               min: 0.0,
               max: 100.0,
