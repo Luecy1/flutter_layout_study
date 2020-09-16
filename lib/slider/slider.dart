@@ -20,10 +20,15 @@ class _Page extends StatefulWidget {
 }
 
 class __PageState extends State<_Page> {
-  double _currentSliderValue = 20;
+  double _sliderValueRed = 20;
+  double _sliderValueGreen = 20;
+  double _sliderValueBlue = 20;
 
   @override
   Widget build(BuildContext context) {
+    final color2 = Color.fromARGB(0xFF, _sliderValueRed.toInt(),
+        _sliderValueGreen.toInt(), _sliderValueBlue.toInt());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('color'),
@@ -33,46 +38,46 @@ class __PageState extends State<_Page> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: Colors.yellow,
+              color: color2,
               width: 200.0,
               height: 200.0,
             ),
             Slider(
               activeColor: Colors.red,
               inactiveColor: Colors.red.withOpacity(0.38),
-              value: _currentSliderValue,
+              value: _sliderValueRed,
               min: 0.0,
-              max: 100.0,
-              label: _currentSliderValue.round().toString(),
+              max: 255.0,
+              label: _sliderValueRed.round().toString(),
               onChanged: (double value) {
                 setState(() {
-                  _currentSliderValue = value;
+                  _sliderValueRed = value;
                 });
               },
             ),
             Slider(
               activeColor: Colors.green,
               inactiveColor: Colors.green.withOpacity(0.38),
-              value: _currentSliderValue,
+              value: _sliderValueGreen,
               min: 0.0,
-              max: 100.0,
-              label: _currentSliderValue.round().toString(),
+              max: 255.0,
+              label: _sliderValueGreen.round().toString(),
               onChanged: (double value) {
                 setState(() {
-                  _currentSliderValue = value;
+                  _sliderValueGreen = value;
                 });
               },
             ),
             Slider(
               activeColor: Colors.blue,
               inactiveColor: Colors.blue.withOpacity(0.38),
-              value: _currentSliderValue,
+              value: _sliderValueBlue,
               min: 0.0,
-              max: 100.0,
-              label: _currentSliderValue.round().toString(),
+              max: 255.0,
+              label: _sliderValueBlue.round().toString(),
               onChanged: (double value) {
                 setState(() {
-                  _currentSliderValue = value;
+                  _sliderValueBlue = value;
                 });
               },
             ),
