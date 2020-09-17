@@ -26,8 +26,12 @@ class __PageState extends State<_Page> {
 
   @override
   Widget build(BuildContext context) {
-    final color2 = Color.fromARGB(0xFF, _sliderValueRed.toInt(),
-        _sliderValueGreen.toInt(), _sliderValueBlue.toInt());
+    final color2 = Color.fromARGB(
+      0xFF,
+      _sliderValueRed.toInt(),
+      _sliderValueGreen.toInt(),
+      _sliderValueBlue.toInt(),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +42,10 @@ class __PageState extends State<_Page> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: color2,
+              decoration: BoxDecoration(
+                color: color2,
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
               width: 200.0,
               height: 200.0,
             ),
