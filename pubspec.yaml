@@ -35,6 +35,7 @@ dependencies:
   just_audio: ^0.4.1
 
   timetable: ^0.2.8
+  time_machine: ^0.9.13
 
 dev_dependencies:
   flutter_test:
@@ -44,3 +45,6 @@ flutter:
 
   uses-material-design: true
 
+  assets:
+    - packages/time_machine/data/cultures/cultures.bin
+    - packages/time_machine/data/tzdb/tzdb.bin
