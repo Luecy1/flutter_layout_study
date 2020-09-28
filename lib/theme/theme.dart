@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      theme: ThemeData.light().copyWith(
+      theme: ThemeData.dark().copyWith(
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline1: TextStyle(
                   color: Colors.deepOrange,
