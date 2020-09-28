@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,16 +15,17 @@ class SilverListPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            title: Text('Title'),
-            expandedHeight: 200.0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                'https://www.saenai.tv/images/special/wpicon/08/icon_1.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+//          SliverAppBar(
+//            title: Text('Title'),
+//            expandedHeight: 200.0,
+//            flexibleSpace: FlexibleSpaceBar(
+//              background: Image.network(
+//                'https://2.bp.blogspot.com/-9PMYAvYnmEo/VIKnFsrkabI/AAAAAAAApb0/yrF5PYImbAA/s800/present_open.png',
+//                fit: BoxFit.cover,
+//              ),
+//            ),
+//          ),
+          makeHeader('1'),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
@@ -44,12 +47,51 @@ class SilverListPage extends StatelessWidget {
   }
 
   Color _getColor(int index) {
-    // final colors = [
-    //   Colors.red,
-    //   Colors.yellow,
-    // ];
-    // Colors.accents
-
     return Colors.accents[index % Colors.accents.length];
+  }
+
+  SliverPersistentHeader makeHeader(String headerText) {
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverAppBarDelegate(
+        minHeight: 60.0,
+        maxHeight: 200.0,
+        child: Container(
+            color: Colors.lightBlue, child: Center(child:
+        Text(headerText))),
+      ),
+    );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    @required this.minHeight,
+    @required this.maxHeight,
+    @required this.child,
+  });
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => math.max(maxHeight, minHeight);
+
+  @override
+  Widget build(BuildContext context,
+      double shrinkOffset,
+      bool overlapsContent) {
+    return new SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
