@@ -26,8 +26,8 @@ class _WrapPageState extends State<WrapPage> {
           children: [
             Wrap(
               alignment: WrapAlignment.values[aliment],
-              // spacing: 8.0, // gap between adjacent chips
-              // runSpacing: 4.0, // gap between lines
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0, // gap between lines
               children: <Widget>[
                 Chip(
                   avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('AH')),
@@ -40,6 +40,10 @@ class _WrapPageState extends State<WrapPage> {
                 Chip(
                   avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('HM')),
                   label: Text('Mulligan'),
+                ),
+                Chip(
+                  avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('JL')),
+                  label: Text('Laurens'),
                 ),
                 Chip(
                   avatar: CircleAvatar(backgroundColor: Colors.blue.shade900, child: Text('JL')),
