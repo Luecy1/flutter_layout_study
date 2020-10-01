@@ -12,6 +12,8 @@ class _PageViewPage extends StatefulWidget {
 class __PageViewPageState extends State<_PageViewPage> {
   PageController _pageController;
 
+  int _index = 0;
+
   @override
   void initState() {
     super.initState();
@@ -30,16 +32,26 @@ class __PageViewPageState extends State<_PageViewPage> {
       appBar: AppBar(
         title: Text('pageview'),
       ),
-      body: AspectRatio(
-        aspectRatio: 1.0 / 1.0,
-        child: PageView(
-          controller: _pageController,
-          children: [
-            _PinkPage(),
-            _BluePage(),
-            _GreenPage(),
-          ],
-        ),
+      body: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 1.0 / 1.0,
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _index = index;
+                });
+              },
+              children: [
+                _PinkPage(),
+                _BluePage(),
+                _GreenPage(),
+              ],
+            ),
+          ),
+          Text('hoge $_index'),
+        ],
       ),
     );
   }
