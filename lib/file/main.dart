@@ -13,35 +13,45 @@ class _File extends StatefulWidget {
 }
 
 class _FileState extends State<_File> {
+  var _pathList = [""];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('file'),
       ),
-      body: Column(
-        children: [
-          FutureBuilder(
-            future: getPath(),
-            initialData: 'loading',
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              return Text(
-                'aaa ${snapshot.data}',
-                style: TextStyle(fontSize: 24.0),
-              );
-            },
-          ),
-          RaisedButton(
-            child: Text('push'),
-            onPressed: () {},
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: _pathList.length,
+        itemBuilder: (context, index) {
+          return buildText(_pathList[index]);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.play_arrow),
+        onPressed: () {
+          _getPath();
+        },
       ),
     );
   }
 
-  Future<String> getPath() async {
+  Text buildText(String text) {
+    return Text(
+      '$text',
+      style: TextStyle(fontSize: 24.0),
+    );
+  }
+
+  Future<void> _getPath() async {
     final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
+    final cacheDir = await getExternalCacheDirectories();
+
+    setState(() {
+      _pathList = [
+        directory.path,
+        ...cacheDir.map((e) => e.path),
+      ];
+    });
   }
 }
