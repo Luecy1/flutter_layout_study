@@ -37,6 +37,8 @@ dependencies:
   timetable: ^0.2.8
   time_machine: ^0.9.13
 
+  path_provider: ^1.6.18
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
