@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart' as path;
 
 void main() {
   runApp(MaterialApp(
@@ -21,11 +21,14 @@ class _FileState extends State<_File> {
       appBar: AppBar(
         title: Text('file'),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemCount: _pathList.length,
         itemBuilder: (context, index) {
           return buildText(_pathList[index]);
         },
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.black,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.play_arrow),
@@ -44,13 +47,24 @@ class _FileState extends State<_File> {
   }
 
   Future<void> _getPath() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final cacheDir = await getExternalCacheDirectories();
+    final directory = await path.getApplicationDocumentsDirectory();
+    final cacheDir = await path.getExternalCacheDirectories();
+//    final libDir = await path.getLibraryDirectory();
+    final tepDir = await path.getTemporaryDirectory();
 
     setState(() {
       _pathList = [
+        'ApplicationDocumentsDirectory',
         directory.path,
+        '',
+        'ExternalCacheDirectories',
         ...cacheDir.map((e) => e.path),
+//        '',
+//        'LibraryDirectory',
+//        libDir.path,
+        '',
+        'TemporaryDirectory',
+        tepDir.path,
       ];
     });
   }
