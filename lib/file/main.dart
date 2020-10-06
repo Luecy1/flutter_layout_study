@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
@@ -21,21 +23,34 @@ class _FileState extends State<_File> {
       appBar: AppBar(
         title: Text('file'),
       ),
-      body: ListView.separated(
-        itemCount: _pathList.length,
-        itemBuilder: (context, index) {
-          return buildText(_pathList[index]);
-        },
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.black,
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.separated(
+              itemCount: _pathList.length,
+              itemBuilder: (context, index) {
+                return buildText(_pathList[index]);
+              },
+              separatorBuilder: (context, index) =>
+                  Divider(
+                    color: Colors.black,
+                  ),
+            ),
+          ),
+          RaisedButton(
+            child: Text('push'),
+            onPressed: () {
+              _getPath();
+            },
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_arrow),
-        onPressed: () {
-          _getPath();
-        },
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.play_arrow),
+//        onPressed: () {
+//          _getPath();
+//        },
+//      ),
     );
   }
 
@@ -67,5 +82,12 @@ class _FileState extends State<_File> {
         tepDir.path,
       ];
     });
+  }
+
+  Future<File> _writeCounter(int counter) async {
+    final file = await;
+
+    // Write the file.
+    return file.writeAsString('$counter');
   }
 }
