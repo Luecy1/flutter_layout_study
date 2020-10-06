@@ -66,6 +66,7 @@ class _FileState extends State<_File> {
     final cacheDir = await path.getExternalCacheDirectories();
 //    final libDir = await path.getLibraryDirectory();
     final tepDir = await path.getTemporaryDirectory();
+//    final downloadDir = await path.getDownloadsDirectory();
 
     setState(() {
       _pathList = [
@@ -80,14 +81,13 @@ class _FileState extends State<_File> {
         '',
         'TemporaryDirectory',
         tepDir.path,
+//        '',
+//        'DownloadsDirectory',
+//        downloadDir.path,
       ];
     });
   }
 
   Future<File> _writeCounter(int counter) async {
-    final file = await;
-
-    // Write the file.
-    return file.writeAsString('$counter');
   }
 }
