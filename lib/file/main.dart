@@ -31,10 +31,9 @@ class _FileState extends State<_File> {
               itemBuilder: (context, index) {
                 return buildText(_pathList[index]);
               },
-              separatorBuilder: (context, index) =>
-                  Divider(
-                    color: Colors.black,
-                  ),
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.black,
+              ),
             ),
           ),
           RaisedButton(
@@ -54,10 +53,29 @@ class _FileState extends State<_File> {
     );
   }
 
-  Text buildText(String text) {
-    return Text(
-      '$text',
-      style: TextStyle(fontSize: 24.0),
+  Widget buildText(String text) {
+    return GestureDetector(
+      child: Text(
+        '$text',
+        style: TextStyle(fontSize: 24.0),
+      ),
+      onTap: () {
+        try {
+          final file = File(text);
+          file.writeAsString('a');
+        } on FileSystemException catch (e, stacktrace) {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text('error'),
+          ));
+          print(e);
+          print(stacktrace);
+        }
+      },
+      onLongPress: () async {
+        final file = File(text);
+        final content = await file.readAsString();
+        print(content);
+      },
     );
   }
 
@@ -88,6 +106,6 @@ class _FileState extends State<_File> {
     });
   }
 
-  Future<File> _writeCounter(int counter) async {
-  }
+//  Future<File> _writeCounter(int counter) async {
+//  }
 }
