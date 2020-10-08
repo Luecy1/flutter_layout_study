@@ -59,10 +59,11 @@ class _FileState extends State<_File> {
         '$text',
         style: TextStyle(fontSize: 24.0),
       ),
-      onTap: () {
+      onTap: () async {
         try {
-          final file = File(text);
-          file.writeAsString('a');
+          final cacheDir = await path.getExternalCacheDirectories();
+          final cacheFile = File('${cacheDir.first.path}/cache.txt');
+          await cacheFile.writeAsString('a');
         } on FileSystemException catch (e, stacktrace) {
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text('error'),
