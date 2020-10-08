@@ -42,6 +42,15 @@ class _FileState extends State<_File> {
               _getPath();
             },
           ),
+          RaisedButton(
+            child: Text('read'),
+            onPressed: () async {
+              final cacheFile = File(
+                  '/storage/emulated/0/Android/data/com.github.luecy1.flutter_layout_study/cache/cache.txt');
+              final contents = await cacheFile.readAsString();
+              print(contents);
+            },
+          ),
         ],
       ),
 //      floatingActionButton: FloatingActionButton(
@@ -63,7 +72,8 @@ class _FileState extends State<_File> {
         try {
           final cacheDir = await path.getExternalCacheDirectories();
           final cacheFile = File('${cacheDir.first.path}/cache.txt');
-          await cacheFile.writeAsString('a');
+          final writeFile = await cacheFile.writeAsString('a\n');
+          print(writeFile);
         } on FileSystemException catch (e, stacktrace) {
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text('error'),
