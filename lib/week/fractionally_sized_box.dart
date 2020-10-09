@@ -13,8 +13,10 @@ class FractionallySizedBoxPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('FractionallySizedBox'),
       ),
-      body: Center(
+      body: Align(
+        alignment: Alignment.topCenter,
         child: FractionallySizedBox(
+          heightFactor: 0.7,
           widthFactor: 0.7,
           child: Container(
             color: Colors.red,
