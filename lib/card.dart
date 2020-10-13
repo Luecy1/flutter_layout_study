@@ -59,6 +59,7 @@ class MyCard extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _PostsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
