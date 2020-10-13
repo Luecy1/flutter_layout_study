@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//todo https://flutter.dev/docs/cookbook/persistence/key-value
+// https://flutter.dev/docs/cookbook/persistence/key-value
 void main() {
   runApp(MaterialApp(
     home: _MyKvs(),
@@ -30,6 +30,7 @@ class _CountUpDownState extends State<CountUpDown> {
 
   @override
   void initState() {
+    super.initState();
     readCount().then((value) {
       setState(() {
         count = value;
