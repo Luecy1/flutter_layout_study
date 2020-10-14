@@ -45,6 +45,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
               child: Text('push!'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(_myController.text),
+                    );
+                  },
+                );
+              },
             ),
           )
         ],
