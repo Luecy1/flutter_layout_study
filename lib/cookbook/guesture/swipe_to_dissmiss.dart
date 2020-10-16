@@ -62,7 +62,10 @@ class __DismissListState extends State<_DismissList> {
         );
       },
       separatorBuilder: (context, index) {
-        return Divider();
+        return Divider(
+          height: 2.0,
+          thickness: 2.0,
+        );
       },
     );
   }
