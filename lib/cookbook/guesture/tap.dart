@@ -30,6 +30,10 @@ class _MyGesture extends StatelessWidget {
         final snackBar = SnackBar(content: Text('long'));
         Scaffold.of(context).showSnackBar(snackBar);
       },
+      onDoubleTap: () {
+        final snackBar = SnackBar(content: Text('double tap'));
+        Scaffold.of(context).showSnackBar(snackBar);
+      },
       child: Center(
         child: Container(
           padding: EdgeInsets.all(12.0),
