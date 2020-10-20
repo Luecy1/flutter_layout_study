@@ -52,3 +52,4 @@ flutter:
   assets:
     - packages/time_machine/data/cultures/cultures.bin
     - packages/time_machine/data/tzdb/tzdb.bin
+    - assets/aozora.png
