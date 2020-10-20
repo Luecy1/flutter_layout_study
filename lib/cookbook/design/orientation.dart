@@ -13,17 +13,21 @@ class _OrientationPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('orientation'),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        padding: EdgeInsets.all(8.0),
-        children: List.generate(20, (index) {
-          return Container(
-            color: Colors.blue,
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return GridView.count(
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+            mainAxisSpacing: 8.0,
+            crossAxisSpacing: 8.0,
+            padding: EdgeInsets.all(8.0),
+            children: buildBox(),
           );
-        }),
+        },
       ),
     );
+  }
+
+  List<Widget> buildBox() {
+    return List.generate(20, (index) => Container(color: Colors.blue));
   }
 }
