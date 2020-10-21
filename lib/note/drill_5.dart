@@ -9,17 +9,42 @@ class _Drill5Page extends StatelessWidget {
       appBar: AppBar(
         title: Text('clip'),
       ),
-      body: Container(
-        alignment: Alignment.center,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: SizedBox(
-            height: 200.0,
-            width: 200.0,
-            child: Image(
-              image: AssetImage('assets/aozora.png'),
-              fit: BoxFit.fitHeight,
-            ),
+      body: Center(
+        child: Container(
+          height: 180.0,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(25.0),
+                child: AspectRatio(
+                  aspectRatio: 4.0 / 5.0,
+                  child: Image(
+                    image: AssetImage('assets/aozora.png'),
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'hoge',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    Text('株式会社hoge'),
+                    Text('役職'),
+                    Text('趣味'),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
