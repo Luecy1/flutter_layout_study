@@ -36,11 +36,26 @@ class _Drill5Page extends StatelessWidget {
                   children: [
                     Text(
                       'hoge',
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: TextStyle(fontSize: 18.0),
                     ),
-                    Text('株式会社hoge'),
-                    Text('役職'),
-                    Text('趣味'),
+                    Row(
+                      children: [
+                        Icon(Icons.home),
+                        Text('株式会社hoge'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.account_circle),
+                        Text('役職'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.headset),
+                        Text('趣味'),
+                      ],
+                    ),
                   ],
                 ),
               )
