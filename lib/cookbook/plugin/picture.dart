@@ -27,6 +27,8 @@ class _CameraPage extends StatefulWidget {
 class __CameraPageState extends State<_CameraPage> {
   CameraController _controller;
 
+  Future<void> _initializeControllerFuture;
+
   @override
   void initState() {
     super.initState();
@@ -35,10 +37,39 @@ class __CameraPageState extends State<_CameraPage> {
       widget.camera,
       ResolutionPreset.medium,
     );
+
+    _initializeControllerFuture = _controller.initialize();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('camera')),
+      body: FutureBuilder<void>(
+        future: _initializeControllerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return CameraPreview(_controller);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.camera_alt),
+        onPressed: () async {
+          await _initializeControllerFuture;
+          final path
+        },
+      ),
+    );
   }
 }
