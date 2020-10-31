@@ -12,7 +12,7 @@ void main() async {
   }
 }
 
-Future<List<_twitterMedia>> getTwitterMedia() async {
+Future<List<TwitterMedia>> getTwitterMedia() async {
   final twitter = Twitter(
     API_KEY,
     API_KEY_SECRET,
@@ -23,17 +23,15 @@ Future<List<_twitterMedia>> getTwitterMedia() async {
       await twitter.request('GET', 'favorites/list.json?include_entities=true&count=100');
 //  final response = await twitter.request('GET', 'statuses/home_timeline.json');
 
-  print(response.body);
-
   List<dynamic> jsonResponse = json.decode(response.body);
-  var twitterMediaList = <_twitterMedia>[];
+  var twitterMediaList = <TwitterMedia>[];
   for (var tw in jsonResponse) {
     final extendedEntities = tw['extended_entities'];
     if (extendedEntities != null) {
       final media = extendedEntities['media'] as List<dynamic>;
       if (media != null) {
         for (var me in media) {
-          twitterMediaList.add(_twitterMedia(me['media_url_https']));
+          twitterMediaList.add(TwitterMedia(me['media_url_https']));
         }
       }
     }
@@ -43,10 +41,10 @@ Future<List<_twitterMedia>> getTwitterMedia() async {
   return twitterMediaList;
 }
 
-class _twitterMedia {
+class TwitterMedia {
   final String mediaUrl;
 
-  _twitterMedia(this.mediaUrl);
+  TwitterMedia(this.mediaUrl);
 
   @override
   String toString() {
