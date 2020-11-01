@@ -35,7 +35,25 @@ class _FavoritePage extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemBuilder: (context, index) {
         final url = twitterMedia[index].mediaUrl;
-        return Image.network(url);
+        return GestureDetector(
+          child: Image.network(url),
+          onTap: () {
+            openDialog(context, url);
+          },
+        );
+      },
+    );
+  }
+
+  void openDialog(BuildContext context, String url) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          children: [
+            Image.network(url),
+          ],
+        );
       },
     );
   }
