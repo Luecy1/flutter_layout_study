@@ -36,10 +36,17 @@ class __DraggableCardState extends State<_DraggableCard> with SingleTickerProvid
 
   DragUpdateDetails _details;
 
+  Animation<Alignment> _animation;
+
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
     super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller.addListener(() {
+      setState(() {
+        _dragAlignment = _animation.value;
+      });
+    });
   }
 
   @override
@@ -55,6 +62,15 @@ class __DraggableCardState extends State<_DraggableCard> with SingleTickerProvid
       children: [
         Text('dx :${_details?.delta?.dx ?? ""}'),
         GestureDetector(
+          child: Align(
+            alignment: _dragAlignment,
+            child: Card(
+              child: widget.child,
+            ),
+          ),
+          onPanDown: (details) {
+            _controller.stop();
+          },
           onPanUpdate: (details) {
             setState(() {
               _dragAlignment += Alignment(
@@ -66,14 +82,19 @@ class __DraggableCardState extends State<_DraggableCard> with SingleTickerProvid
               print('dy :${details.delta.dx}');
             });
           },
-          child: Align(
-            alignment: _dragAlignment,
-            child: Card(
-              child: widget.child,
-            ),
-          ),
+          onPanEnd: (details) {
+            _runAnimation();
+          },
         ),
       ],
     );
+  }
+
+  void _runAnimation() {
+    _animation = _controller.drive(
+      AlignmentTween(begin: _dragAlignment, end: Alignment.center),
+    );
+    _controller.reset();
+    _controller.forward();
   }
 }
