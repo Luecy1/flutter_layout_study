@@ -1,9 +1,15 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 main() {
   runApp(
-    MaterialApp(
-      home: CatalogPage(),
+    ChangeNotifierProvider(
+      create: (_) => CartModel(),
+      child: MaterialApp(
+        home: CatalogPage(),
+      ),
     ),
   );
 }
@@ -18,12 +24,22 @@ class CatalogPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Catalog'),
         actions: [
-          IconButton(icon: Icon(Icons.shopping_cart)),
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => CartPage(),
+              ));
+            },
+          ),
         ],
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
           final product = _ProductList[index];
+
+          final addFlg = Provider.of<CartModel>(context, listen: false).contains(product);
+
           return Row(
             children: [
               Padding(
@@ -42,10 +58,11 @@ class CatalogPage extends StatelessWidget {
               ),
               Spacer(flex: 2),
               GestureDetector(
-                child: Text('ADD'),
+                child: addFlg ? Text('ADDED') : Text('ADD'),
                 onTap: () {
                   final snackbar = SnackBar(content: Text('click ${product.name}'));
                   _scaffoldKey.currentState.showSnackBar(snackbar);
+                  Provider.of<CartModel>(context, listen: false).add(product);
                 },
               ),
               Spacer(flex: 1),
@@ -55,6 +72,46 @@ class CatalogPage extends StatelessWidget {
         itemCount: _ProductList.length,
       ),
     );
+  }
+}
+
+class CartPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(''),
+      ),
+      body: Center(
+        child: Consumer<CartModel>(
+          builder: (context, cart, child) {
+            return Text("Total price: ${cart.totalPrice}");
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class CartModel extends ChangeNotifier {
+  final List<_Product> _items = [];
+
+  UnmodifiableListView<_Product> get items => UnmodifiableListView(_items);
+
+  int get totalPrice => _items.length * 42;
+
+  void add(_Product item) {
+    _items.add(item);
+    notifyListeners();
+  }
+
+  bool contains(_Product item) {
+    return _items.contains(item);
+  }
+
+  void removeAll() {
+    _items.clear();
+    notifyListeners();
   }
 }
 
