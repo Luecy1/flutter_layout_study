@@ -38,7 +38,7 @@ class CatalogPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = _ProductList[index];
 
-          final addFlg = Provider.of<CartModel>(context, listen: false).contains(product);
+          // final addFlg = Provider.of<CartModel>(context, listen: false).contains(product);
 
           return Row(
             children: [
@@ -57,12 +57,16 @@ class CatalogPage extends StatelessWidget {
                 style: TextStyle(fontSize: 20.0),
               ),
               Spacer(flex: 2),
-              GestureDetector(
-                child: addFlg ? Text('ADDED') : Text('ADD'),
-                onTap: () {
-                  final snackbar = SnackBar(content: Text('click ${product.name}'));
-                  _scaffoldKey.currentState.showSnackBar(snackbar);
-                  Provider.of<CartModel>(context, listen: false).add(product);
+              Consumer<CartModel>(
+                builder: (_, model, __) {
+                  return GestureDetector(
+                    child: model.contains(product) ? Text('ADDED') : Text('ADD'),
+                    onTap: () {
+                      final snackbar = SnackBar(content: Text('click ${product.name}'));
+                      _scaffoldKey.currentState.showSnackBar(snackbar);
+                      Provider.of<CartModel>(context, listen: false).add(product);
+                    },
+                  );
                 },
               ),
               Spacer(flex: 1),
