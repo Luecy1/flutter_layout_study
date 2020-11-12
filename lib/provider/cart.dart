@@ -55,19 +55,22 @@ class _MyListItem extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Row(
-        children: [
-          AspectRatio(
-            aspectRatio: 1.0,
-            child: Container(
-              color: item.color,
+      child: LimitedBox(
+        maxHeight: 48.0,
+        child: Row(
+          children: [
+            AspectRatio(
+              aspectRatio: 1.0,
+              child: Container(
+                color: item.color,
+              ),
             ),
-          ),
-          SizedBox(width: 24),
-          Expanded(
-            child: Text(item.name, style: textTheme),
-          ),
-        ],
+            SizedBox(width: 24),
+            Expanded(
+              child: Text(item.name, style: textTheme),
+            ),
+          ],
+        ),
       ),
     );
   }
