@@ -2,11 +2,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/provider/model.dart';
+import 'package:flutter_layout_study/provider/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: MyCatalog(),
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => CatalogModel()),
+      ],
+      child: MaterialApp(
+        theme: appTheme,
+        home: MyCatalog(),
+      ),
+    );
+  }
 }
 
 class MyCatalog extends StatelessWidget {
@@ -18,7 +33,9 @@ class MyCatalog extends StatelessWidget {
           _MyAppBar(),
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) => _MyListItem()),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => _MyListItem(index),
+            ),
           ),
         ],
       ),
@@ -30,31 +47,38 @@ class _MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text(
-        'Catalog',
-        style: Theme.of(context).textTheme.headline1,
-      ),
+      title: Text('Catalog', style: Theme.of(context).textTheme.headline1),
       floating: true,
       actions: [
         IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              // todo カート画面に遷移
-            }),
+          icon: Icon(Icons.shopping_cart),
+          onPressed: () {
+            // todo カート画面に遷移
+          },
+        ),
       ],
     );
   }
 }
 
 class _MyListItem extends StatelessWidget {
+  final int index;
+
+  _MyListItem(this.index, {Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // 暫定的に固定で取得
-    var item = CatalogModel().getById(0);
-    var textTheme = Theme.of(context).textTheme.headline6;
+    final item = context.select<CatalogModel, Item>(
+          (catalog) => catalog.getByPosition(index),
+    );
+
+    final textTheme = Theme
+        .of(context)
+        .textTheme
+        .headline6;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.all(8.0),
       child: LimitedBox(
         maxHeight: 48.0,
         child: Row(
@@ -65,13 +89,20 @@ class _MyListItem extends StatelessWidget {
                 color: item.color,
               ),
             ),
-            SizedBox(width: 24),
-            Expanded(
-              child: Text(item.name, style: textTheme),
-            ),
+            SizedBox(width: 24.0),
+            Expanded(child: Text('${item.name}', style: textTheme)),
+            SizedBox(width: 24.0),
+            _AddButton(),
           ],
         ),
       ),
     );
+  }
+}
+
+class _AddButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(onPressed: null, child: Text('ADD'));
   }
 }
