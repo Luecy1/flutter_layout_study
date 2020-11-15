@@ -3,25 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/provider/model.dart';
 import 'package:flutter_layout_study/provider/theme.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(create: (context) => CatalogModel()),
-      ],
-      child: MaterialApp(
-        theme: appTheme,
-        home: MyCatalog(),
-      ),
-    );
-  }
+  runApp(MaterialApp(
+    theme: appTheme,
+    home: MyCatalog(),
+  ));
 }
 
 class MyCatalog extends StatelessWidget {
@@ -33,9 +20,7 @@ class MyCatalog extends StatelessWidget {
           _MyAppBar(),
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => _MyListItem(index),
-            ),
+            delegate: SliverChildBuilderDelegate((context, index) => _MyListItem()),
           ),
         ],
       ),
@@ -62,20 +47,11 @@ class _MyAppBar extends StatelessWidget {
 }
 
 class _MyListItem extends StatelessWidget {
-  final int index;
-
-  _MyListItem(this.index, {Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    final item = context.select<CatalogModel, Item>(
-          (catalog) => catalog.getByPosition(index),
-    );
+    final item = CatalogModel().getById(0);
 
-    final textTheme = Theme
-        .of(context)
-        .textTheme
-        .headline6;
+    final textTheme = Theme.of(context).textTheme.headline6;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
