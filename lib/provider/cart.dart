@@ -15,6 +15,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider(create: (context) => CatalogModel()),
+        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+          create: (context) => CartModel(),
+          update: (context, catalog, cart) {
+            cart.catalog = catalog;
+            return cart;
+          },
+        ),
       ],
       child: MaterialApp(
         theme: appTheme,
@@ -69,13 +76,10 @@ class _MyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = context.select<CatalogModel, Item>(
-          (catalog) => catalog.getByPosition(index),
+      (catalog) => catalog.getByPosition(index),
     );
 
-    final textTheme = Theme
-        .of(context)
-        .textTheme
-        .headline6;
+    final textTheme = Theme.of(context).textTheme.headline6;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -92,7 +96,7 @@ class _MyListItem extends StatelessWidget {
             SizedBox(width: 24.0),
             Expanded(child: Text('${item.name}', style: textTheme)),
             SizedBox(width: 24.0),
-            _AddButton(),
+            _AddButton(item: item),
           ],
         ),
       ),
@@ -101,8 +105,24 @@ class _MyListItem extends StatelessWidget {
 }
 
 class _AddButton extends StatelessWidget {
+  final Item item;
+
+  const _AddButton({Key key, @required this.item}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return FlatButton(onPressed: null, child: Text('ADD'));
+    final isInCart = context.select<CartModel, bool>(
+          (cart) => cart.items.contains(item),
+    );
+
+    return isInCart
+        ? FlatButton(onPressed: null, child: Text('ADDED'))
+        : FlatButton(
+      onPressed: () {
+        final cart = context.read<CartModel>();
+        cart.add(item);
+      },
+      child: Text('ADD'),
+    );
   }
 }
