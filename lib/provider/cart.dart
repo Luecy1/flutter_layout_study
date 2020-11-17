@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/provider/model.dart';
 import 'package:flutter_layout_study/provider/theme.dart';
@@ -25,10 +24,7 @@ class _MyCart extends StatelessWidget {
         color: Colors.yellow,
         child: Column(
           children: [
-            Divider(
-              height: 4.0,
-              color: Colors.black,
-            ),
+            Divider(height: 4.0, color: Colors.black),
           ],
         ),
       ),
