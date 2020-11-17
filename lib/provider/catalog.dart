@@ -3,12 +3,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/provider/model.dart';
 import 'package:flutter_layout_study/provider/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: appTheme,
-    home: MyCatalog(),
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => CatalogModel()),
+        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+          create: (context) => CartModel(),
+          update: (context, catalog, cart) {
+            cart.catalog = catalog;
+            return cart;
+          },
+        )
+      ],
+      child: MaterialApp(
+        title: 'Provider',
+        theme: appTheme,
+        initialRoute: '/',
+        routes: {
+          // 暫定的にMyCatalogに
+          '/': (context) => MyCatalog(),
+        },
+      ),
+    );
+  }
 }
 
 class MyCatalog extends StatelessWidget {
@@ -68,7 +93,7 @@ class _MyListItem extends StatelessWidget {
             SizedBox(width: 24.0),
             Expanded(child: Text('${item.name}', style: textTheme)),
             SizedBox(width: 24.0),
-            _AddButton(),
+            _AddButton(item: item),
           ],
         ),
       ),
@@ -77,8 +102,25 @@ class _MyListItem extends StatelessWidget {
 }
 
 class _AddButton extends StatelessWidget {
+  final Item item;
+
+  const _AddButton({Key key, @required this.item}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return FlatButton(onPressed: null, child: Text('ADD'));
+    final isInCart = context.select<CartModel, bool>(
+          (cart) => cart.items.contains(item),
+    );
+
+    return FlatButton(
+      onPressed: isInCart ? null : () {
+        final cart = context.read<CartModel>();
+        cart.add(item);
+      },
+      splashColor: Theme
+          .of(context)
+          .primaryColor,
+      child: isInCart ? Icon(Icons.check, semanticLabel: 'ADDED') : Text('ADD'),
+    );
   }
 }
