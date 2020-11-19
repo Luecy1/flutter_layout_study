@@ -45,7 +45,7 @@ class MyCatalog extends StatelessWidget {
           _MyAppBar(),
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) => _MyListItem()),
+            delegate: SliverChildBuilderDelegate((context, index) => _MyListItem(index)),
           ),
         ],
       ),
@@ -72,9 +72,15 @@ class _MyAppBar extends StatelessWidget {
 }
 
 class _MyListItem extends StatelessWidget {
+  final int index;
+
+  _MyListItem(this.index, {Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final item = CatalogModel().getById(0);
+    final item = context.select<CatalogModel, Item>(
+      (catalog) => catalog.getByPosition(index),
+    );
 
     final textTheme = Theme.of(context).textTheme.headline6;
 
@@ -113,7 +119,9 @@ class _AddButton extends StatelessWidget {
     );
 
     return FlatButton(
-      onPressed: isInCart ? null : () {
+      onPressed: isInCart
+          ? null
+          : () {
         final cart = context.read<CartModel>();
         cart.add(item);
       },
