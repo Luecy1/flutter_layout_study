@@ -1,6 +1,7 @@
 // https://github.com/flutter/samples/blob/master/provider_shopper/lib/screens/catalog.dart
 
 import 'package:flutter/material.dart';
+import 'package:flutter_layout_study/provider/cart.dart';
 import 'package:flutter_layout_study/provider/model.dart';
 import 'package:flutter_layout_study/provider/theme.dart';
 import 'package:provider/provider.dart';
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Provider',
         theme: appTheme,
-        initialRoute: '/',
+        initialRoute: '/catalog',
         routes: {
-          // 暫定的にMyCatalogに
-          '/': (context) => MyCatalog(),
+          '/catalog': (context) => MyCatalog(),
+          '/cart': (context) => MyCart(),
         },
       ),
     );
@@ -62,9 +63,7 @@ class _MyAppBar extends StatelessWidget {
       actions: [
         IconButton(
           icon: Icon(Icons.shopping_cart),
-          onPressed: () {
-            // todo カート画面に遷移
-          },
+          onPressed: () => Navigator.pushNamed(context, '/cart'),
         ),
       ],
     );

@@ -5,11 +5,11 @@ import 'package:flutter_layout_study/provider/theme.dart';
 void main() {
   runApp(MaterialApp(
     theme: appTheme,
-    home: _MyCart(),
+    home: MyCart(),
   ));
 }
 
-class _MyCart extends StatelessWidget {
+class MyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
