@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_study/provider/model.dart';
-import 'package:flutter_layout_study/provider/theme.dart';
-
-void main() {
-  runApp(MaterialApp(
-    theme: appTheme,
-    home: MyCart(),
-  ));
-}
+import 'package:provider/provider.dart';
 
 class MyCart extends StatelessWidget {
   @override
@@ -24,6 +17,12 @@ class MyCart extends StatelessWidget {
         color: Colors.yellow,
         child: Column(
           children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: _CartList(),
+              ),
+            ),
             Divider(height: 4.0, color: Colors.black),
           ],
         ),
@@ -37,10 +36,21 @@ class _CartList extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemNameStyle = Theme.of(context).textTheme.headline6;
 
-    final cart = CartModel();
-    cart.add(CatalogModel().getById(1));
-    cart.add(CatalogModel().getById(2));
+    var cart = context.watch<CartModel>();
 
-    return Container();
+    return ListView.builder(
+      itemCount: cart.items.length,
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.done),
+        trailing: IconButton(
+          icon: Icon(Icons.remove_circle_outline_outlined),
+          onPressed: () {},
+        ),
+        title: Text(
+          cart.items[index].name,
+          style: itemNameStyle,
+        ),
+      ),
+    );
   }
 }
