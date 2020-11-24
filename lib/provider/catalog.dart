@@ -6,10 +6,6 @@ import 'package:flutter_layout_study/provider/model.dart';
 import 'package:flutter_layout_study/provider/theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

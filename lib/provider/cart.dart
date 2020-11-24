@@ -24,6 +24,7 @@ class MyCart extends StatelessWidget {
               ),
             ),
             Divider(height: 4.0, color: Colors.black),
+            _CartTotal(),
           ],
         ),
       ),
@@ -49,6 +50,34 @@ class _CartList extends StatelessWidget {
         title: Text(
           cart.items[index].name,
           style: itemNameStyle,
+        ),
+      ),
+    );
+  }
+}
+
+class _CartTotal extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var hugeStyle = Theme.of(context).textTheme.headline1.copyWith(fontSize: 48.0);
+    return SizedBox(
+      height: 200.0,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Consumer<CartModel>(
+              builder: (context, cart, child) => Text('\$${cart.totalPrice}', style: hugeStyle),
+            ),
+            SizedBox(width: 24.0),
+            FlatButton(
+              onPressed: () {
+                final snackBar = SnackBar(content: Text('Buying not supported.'));
+                Scaffold.of(context).showSnackBar(snackBar);
+              },
+              child: Text('BUY'),
+            ),
+          ],
         ),
       ),
     );
