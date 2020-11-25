@@ -1,37 +1,8 @@
 // https://github.com/flutter/samples/blob/master/provider_shopper/lib/screens/catalog.dart
 
 import 'package:flutter/material.dart';
-import 'package:flutter_layout_study/provider/cart.dart';
 import 'package:flutter_layout_study/provider/model.dart';
-import 'package:flutter_layout_study/provider/theme.dart';
 import 'package:provider/provider.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(create: (context) => CatalogModel()),
-        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
-          update: (context, catalog, cart) {
-            cart.catalog = catalog;
-            return cart;
-          },
-        )
-      ],
-      child: MaterialApp(
-        title: 'Provider',
-        theme: appTheme,
-        initialRoute: '/catalog',
-        routes: {
-          '/catalog': (context) => MyCatalog(),
-          '/cart': (context) => MyCart(),
-        },
-      ),
-    );
-  }
-}
 
 class MyCatalog extends StatelessWidget {
   @override

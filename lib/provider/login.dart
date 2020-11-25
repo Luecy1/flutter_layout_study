@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'theme.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: MyLogin(),
-    theme: appTheme,
-  ));
-}
-
 class MyLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +26,9 @@ class MyLogin extends StatelessWidget {
               RaisedButton(
                 color: Colors.yellow,
                 child: Text('Enter'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/catalog');
+                },
               )
             ],
           ),
